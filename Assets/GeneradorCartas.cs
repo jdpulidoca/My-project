@@ -56,9 +56,7 @@ public class GeneradorCartas : MonoBehaviour
     {
         LimpiarCartas(); // Eliminar cartas anteriores antes de generar nuevas
 
-
-        List<Sprite> cartasSeleccionadas = new List<Sprite>();
-
+        ListaSprite cartasSeleccionadas = new ListaSprite();
         // Crear pares de cartas
         for (int i = 0; i < totalCartas / 2; i++)
         {
@@ -98,11 +96,11 @@ public class GeneradorCartas : MonoBehaviour
         }
     }
 
-    private List<Sprite> MezclarCartas(List<Sprite> lista)
+    private ListaSprite MezclarCartas(ListaSprite lista)
     {
-        for (int i = 0; i < lista.Count; i++)
+        for (int i = 0; i < lista.Count(); i++)
         {
-            int randomIndex = Random.Range(0, lista.Count);
+            int randomIndex = Random.Range(0, lista.Count());
             Sprite temp = lista[i];
             lista[i] = lista[randomIndex];
             lista[randomIndex] = temp;
