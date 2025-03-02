@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 public class GeneradorCartas : MonoBehaviour
 {
-    public GameObject cartaPrefab; // Prefab de la carta
-    public Transform contenedorCartas; // Contenedor donde se generarán las cartas
-    public Sprite[] imagenesCartas; // Imágenes de las cartas
+    public GameObject cartaPrefab; 
+    public Transform contenedorCartas; 
+    public Sprite[] imagenesCartas; 
     public Button botonVolver;
 
     private int nivel;
     private int totalCartas;
-    private const int columnas = 9; // Máximo de columnas
-    private const int filas = 5; // Máximo de filas
-    private const int maxCartas = columnas * filas; // Máximo de 45 cartas
+    private const int columnas = 9; 
+    private const int filas = 5; 
+    private const int maxCartas = columnas * filas; 
   
 
     private void Start()
     {
-        nivel = PlayerPrefs.GetInt("NivelSeleccionado", 1); // Recupera el nivel
-        totalCartas = nivel * 2; // 2 cartas por nivel
+        nivel = PlayerPrefs.GetInt("NivelSeleccionado", 1); 
+        nivel=nivel+1;
+        totalCartas = nivel * 2; 
 
-        // Ajustar si el número de cartas excede la cuadrícula
         if (totalCartas > maxCartas)
         {
             Debug.LogWarning("El número de cartas excede la cuadrícula. Ajustando al máximo permitido.");
@@ -45,7 +45,7 @@ public class GeneradorCartas : MonoBehaviour
 
     private void Update()
     {
-        // Verifica si ya no hay cartas y cambia automáticamente de escena
+
         if (contenedorCartas.childCount == 0)
         {
             Debug.Log("No quedan cartas, volviendo al menú...");
@@ -54,10 +54,10 @@ public class GeneradorCartas : MonoBehaviour
     }
     private void GenerarCartas()
     {
-        LimpiarCartas(); // Eliminar cartas anteriores antes de generar nuevas
+        LimpiarCartas(); 
 
         ListaSprite cartasSeleccionadas = new ListaSprite();
-        // Crear pares de cartas
+       
         for (int i = 0; i < totalCartas / 2; i++)
         {
             Sprite carta = imagenesCartas[i % imagenesCartas.Length];
@@ -65,13 +65,13 @@ public class GeneradorCartas : MonoBehaviour
             cartasSeleccionadas.Add(carta);
         }
 
-        // Mezclar las cartas
+       
         cartasSeleccionadas = MezclarCartas(cartasSeleccionadas);
 
-        // Definir punto de inicio para centrar las cartas
+        
         Vector3 posicionInicial = contenedorCartas.position;
-        float espacioX = 1.1f; // Espaciado horizontal
-        float espacioY = 1.2f; // Espaciado vertical
+        float espacioX = 1.1f; 
+        float espacioY = 1.2f; 
 
         int contador = 0;
 
@@ -79,12 +79,12 @@ public class GeneradorCartas : MonoBehaviour
         {
             for (int columna = 0; columna < columnas; columna++)
             {
-                if (contador >= totalCartas) return; // No generar más de las necesarias
+                if (contador >= totalCartas) return; 
 
                 Vector3 posicion = posicionInicial + new Vector3(columna * espacioX, -fila * espacioY, 0);
                 GameObject nuevaCarta = Instantiate(cartaPrefab, posicion, Quaternion.identity, contenedorCartas);
 
-                // Asignar la imagen a la carta
+                
                 GiroCarta giroCarta = nuevaCarta.GetComponent<GiroCarta>();
                 if (giroCarta != null)
                 {
