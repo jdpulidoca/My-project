@@ -78,6 +78,8 @@ public class MapaManager : MonoBehaviour
                 {
                     CrearConexionVisual(nodos[i].nodo, nodos[j].nodo);
                     grafo.ConectarNodos(nodos[i].id, nodos[j].id);
+                    grafo.ConectarNodos(nodos[j].id, nodos[i].id);
+                    Debug.Log($"Conexión creada entre {nodos[i].id} y {nodos[j].id}");
                 }
             }
         }
@@ -122,6 +124,7 @@ public class MapaManager : MonoBehaviour
         Debug.Log($"Segundo ciclo off para nodo {id}");
     }
     Debug.Log("Sale Revision");
+    GameManager.Instance.estado.MostrarEstado();
 }
 
 
