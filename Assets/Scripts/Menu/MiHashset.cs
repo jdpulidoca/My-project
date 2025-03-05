@@ -1,4 +1,5 @@
 using System;
+
 public class MiHashSet
 {
     private MiLista<int>[] buckets;
@@ -14,7 +15,7 @@ public class MiHashSet
 
     private int Hash(int valor)
     {
-        return valor.GetHashCode() % buckets.Length;
+        return Math.Abs(valor.GetHashCode() % buckets.Length);  // Asegura índice positivo
     }
 
     public void Agregar(int valor)
@@ -36,5 +37,17 @@ public class MiHashSet
         }
         return false;
     }
+
+    public int Conteo()
+    {
+        int total = 0;
+        for (int i = 0; i < buckets.Length; i++)
+        {
+            total += buckets[i].Conteo;
+        }
+        return total;
+    }
 }
+
+
 

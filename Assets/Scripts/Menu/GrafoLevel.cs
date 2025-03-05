@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GrafoLevel
 {
     private MiLista<NodoNivel> nodos;
@@ -27,13 +25,12 @@ public class GrafoLevel
     {
         for (int i = 0; i < nodos.Conteo; i++)
         {
-            if (nodos.Obtener(i).idNivel == id) return nodos.Obtener(i);
+            if (nodos.Obtener(i).idNivel == id)
+            {
+                return nodos.Obtener(i);
+            }
         }
         return null;
     }
-
-    public MiLista<NodoNivel> ObtenerNodos()
-    {
-        return nodos;
-    }
 }
+

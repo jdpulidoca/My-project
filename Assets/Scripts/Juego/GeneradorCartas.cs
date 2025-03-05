@@ -49,9 +49,18 @@ public class GeneradorCartas : MonoBehaviour
         if (contenedorCartas.childCount == 0)
         {
             Debug.Log("No quedan cartas, volviendo al menú...");
+            ComprobarNivelCompletado();
             VolverAlMenu();
         }
     }
+    void ComprobarNivelCompletado()
+{
+    
+        int nivel = PlayerPrefs.GetInt("NivelSeleccionado", 0);
+        GameManager.Instance.estado.CambiarEstado(nivel, "completo");
+        GameManager.Instance.GuardarEstado();
+    
+}
     private void GenerarCartas()
     {
         LimpiarCartas(); 

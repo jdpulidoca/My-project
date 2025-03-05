@@ -16,4 +16,3 @@ public class NodoNivel
         conexiones.Agregar(idDestino);
     }
 }
-
